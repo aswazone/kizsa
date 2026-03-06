@@ -19,7 +19,7 @@ function RootStack() {
       </Stack.Protected>
 
       <Stack.Protected guard={!!isSignedIn}>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
+        <Stack.Screen name="(tabs)" />
       </Stack.Protected>
     </Stack>
   );
