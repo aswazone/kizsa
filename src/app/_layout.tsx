@@ -1,14 +1,34 @@
+import { ClerkProvider, useAuth } from "@clerk/expo";
+import { tokenCache } from "@clerk/expo/token-cache";
 import { Stack } from "expo-router";
-import "../../global.css"
-import { ClerkProvider } from '@clerk/clerk-expo'
-import { tokenCache } from '@clerk/clerk-expo/token-cache'
+import "../../global.css";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+if (!publishableKey) {
+  throw new Error("Missing Publishable Key");
+}
+
+function RootStack() {
+  const { isSignedIn } = useAuth();
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Protected guard={!isSignedIn}>
+        <Stack.Screen name="(auth)" />
+      </Stack.Protected>
+
+      <Stack.Protected guard={!!isSignedIn}>
+        <Stack.Screen name="index" options={{ title: "Home" }} />
+      </Stack.Protected>
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
   return (
-    <ClerkProvider tokenCache={tokenCache}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
-      </Stack>
+    <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
+      <RootStack />
     </ClerkProvider>
-  )
+  );
 }
