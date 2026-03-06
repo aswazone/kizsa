@@ -35,7 +35,17 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "kizsa-chat-app",
+          "organization": "myprojects-j1"
+        }
+      ],
+      "@sentry/react-native",
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true,
