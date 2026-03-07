@@ -36,6 +36,14 @@
           }
         }
       ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "kizsa-chat-app",
+          "organization": "myprojects-j1"
+        }
+      ],
       "expo-image"
     ],
     "experiments": {

@@ -1,8 +1,19 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { useAuth } from '@clerk/expo';
+import { Redirect } from 'expo-router';
 
 const TabsLayout = () => {
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) return null;
+
+  if (!isSignedIn) {
+    return <Redirect href={"/(auth)"} />;
+  }
+
   return (
     <NativeTabs>
       <NativeTabs.Trigger name="index">
