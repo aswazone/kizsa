@@ -6,13 +6,13 @@ import { Redirect } from 'expo-router';
 
 const TabsLayout = () => {
 
-    const { isSignedIn, isLoaded } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
-    if (!isLoaded) return null;
+  if (!isLoaded) return null;
 
-    if (!isSignedIn) {
-        return <Redirect href={"/(auth)"} />;
-    }
+  if (!isSignedIn) {
+    return <Redirect href={"/(auth)"} />;
+  }
 
   return (
     <NativeTabs>
